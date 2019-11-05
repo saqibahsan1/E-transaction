@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "33890760869",
+    "firebase_url": "https://makeyousmile-21ff6.firebaseio.com",
+    "project_id": "makeyousmile-21ff6",
+    "storage_bucket": "makeyousmile-21ff6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33890760869:android:0f1e2804b77bb03766354c",
+        "android_client_info": {
+          "package_name": "com.android.makeyousmile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33890760869-nnhv0fvmt5e4914ik96o5psi5j1l874p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.makeyousmile",
+            "certificate_hash": "daf06992b337bcb82c26052002aa0aaf94cbf21d"
+          }
+        },
+        {
+          "client_id": "33890760869-gs9n3k9v1fk3ne124f242oakqe12m4tb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY49VZ7edqENmoWEubZ8_NmqmXP2LvPZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33890760869-gs9n3k9v1fk3ne124f242oakqe12m4tb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
