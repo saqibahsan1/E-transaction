@@ -1,7 +1,8 @@
-package com.android.makeyousmile;
+package com.android.makeyousmile.ui.Activities;
 
 import android.os.Bundle;
 
+import com.android.makeyousmile.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
