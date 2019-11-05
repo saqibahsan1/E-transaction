@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "33890760869-h0o9n382jn5ob2t8eh1demodh9lh764m.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.android.makeyousmile",
-            "certificate_hash": "a3c9ddde6963d5ddbfab19851ada4e40a9d56302"
-          }
-        },
-        {
           "client_id": "33890760869-nnhv0fvmt5e4914ik96o5psi5j1l874p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
