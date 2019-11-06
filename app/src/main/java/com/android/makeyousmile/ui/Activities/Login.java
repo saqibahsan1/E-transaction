@@ -38,7 +38,6 @@ public class Login extends AppCompatActivity {
                 AuthUI.getInstance().createSignInIntentBuilder()
                         .setAvailableProviders(providers)
                         .setTheme(R.style.MyTheme)
-                        .setLogo(R.drawable.make_you_smile)
                         .build(), MY_REQUEST_CODE
         );
     }
