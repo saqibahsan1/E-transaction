@@ -16,11 +16,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Login extends AppCompatActivity {
 
     private static final int MY_REQUEST_CODE = 123;
     List<AuthUI.IdpConfig> providers;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class Login extends AppCompatActivity {
         showSignInOptions();
 
     }
+
     private void showSignInOptions() {
         startActivityForResult(
                 AuthUI.getInstance().createSignInIntentBuilder()
@@ -49,10 +52,16 @@ public class Login extends AppCompatActivity {
             IdpResponse response = IdpResponse.fromResultIntent(data);
             if (resultCode == RESULT_OK) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                startActivity(new Intent(this, MainActivity.class));
-                finish();
-                Utils.getInstance().setBoolean("isLoggedIn",true,this);
-                Toast.makeText(this, "Welcome! " + user.getDisplayName(), Toast.LENGTH_LONG).show();
+                if (user.getEmail() != null)
+                    if (user != null && (Objects.requireNonNull(user.getEmail()).equalsIgnoreCase("fishialy123@gmail.com") || user.getEmail().equalsIgnoreCase("sanaashaikh231@gmail.com"))) {
+                        Utils.getInstance().setBoolean("isAdmin", true, getApplicationContext());
+                    }
+                else {
+                        startActivity(new Intent(this, MainActivity.class));
+                        finish();
+                        Utils.getInstance().setBoolean("isLoggedIn", true, this);
+                        Toast.makeText(this, "Welcome! " + user.getPhoneNumber(), Toast.LENGTH_LONG).show();
+                    }
             } else {
                 if (response != null) {
                     Toast.makeText(this, "" + response.getError().getMessage(), Toast.LENGTH_LONG).show();

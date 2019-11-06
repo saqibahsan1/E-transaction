@@ -10,11 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.OrdersActivity"></activity>
-        <activity android:name=".ui.activity.DonationActivity" />
-        <activity android:name=".ui.activity.RestaurantActivity" />
-        <activity android:name=".ui.activity.DeliveryBoyActivity" />
-        <activity android:name=".ui.activity.OrganizationActivity" />
+        <activity android:name=".ui.activity.OrdersActivity"
+            android:label="Orders"></activity>
+        <activity android:name=".ui.activity.DonationActivity"
+            android:label="Donation"/>
+        <activity android:name=".ui.activity.RestaurantActivity"
+            android:label="Restaurant"/>
+        <activity android:name=".ui.activity.DeliveryBoyActivity"
+            android:label="DeliveryBoy"/>
+        <activity android:name=".ui.activity.OrganizationActivity"
+            android:label="Organization"/>
         <activity
             android:name=".ui.Activities.Splash"
             android:screenOrientation="portrait"

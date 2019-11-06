@@ -18,6 +18,7 @@ import com.android.makeyousmile.R;
 import com.android.makeyousmile.databinding.FragmentDashboardBinding;
 import com.android.makeyousmile.ui.activity.DeliveryBoyActivity;
 import com.android.makeyousmile.ui.activity.DonationActivity;
+import com.android.makeyousmile.ui.activity.OrdersActivity;
 import com.android.makeyousmile.ui.activity.OrganizationActivity;
 import com.android.makeyousmile.ui.activity.RestaurantActivity;
 
@@ -42,6 +43,13 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), OrganizationActivity.class));
+            }
+        });
+
+        binding.order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), OrdersActivity.class));
             }
         });
 

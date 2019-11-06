@@ -1,6 +1,6 @@
 package com.android.makeyousmile.ui.model;
 
-public class AddOrganization {
+public class Restaurant {
 
     public String getEmail() {
         return email;

@@ -68,6 +68,8 @@ public class Utils {
         editor.putString(key, value);
         editor.commit();
     }
+
+
     public void setBoolean(String key, Boolean value, Context context) {
         SharedPreferences preferences = context.getSharedPreferences(TAG, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
