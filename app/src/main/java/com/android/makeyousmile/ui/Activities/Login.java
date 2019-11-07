@@ -70,9 +70,11 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(this, "Welcome! " + user.getDisplayName(), Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    if (response != null) {
-                        Toast.makeText(this, "" + response.getError().getMessage(), Toast.LENGTH_LONG).show();
-                    }
+                        Utils.getInstance().setBoolean("isAdmin", false, getApplicationContext());
+                        Utils.getInstance().setDefaults("userID",user.getUid(),getApplicationContext());
+                        startActivity(new Intent(this, MainActivity.class));
+                        finish();
+                        Utils.getInstance().setBoolean("isLoggedIn", true, this);
                 }
             }
         }
