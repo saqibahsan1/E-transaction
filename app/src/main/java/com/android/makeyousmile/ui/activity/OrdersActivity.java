@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class OrdersActivity extends AppCompatActivity {
     private List<Orders> donationList = new ArrayList<>();
     private OrderAdapter mAdapter;
     private Orders orders;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +83,7 @@ public class OrdersActivity extends AppCompatActivity {
                     orders.setQuantity(binding.quantity.getText().toString());
                     orders.setFoodtype(binding.food.getText().toString());
                     orders.setPayment(binding.payment.getText().toString());
-                    String id = myRef.push().getKey();
+                    id = myRef.push().getKey();
                     if (id != null) {
                         myRef.child(id).setValue(orders);
                         myRefUser.child(id).setValue(orders);
@@ -104,6 +107,25 @@ public class OrdersActivity extends AppCompatActivity {
         }
 
 
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    Orders value = dataSnapshot.getValue(Orders.class);
+                    getLastIndexValue();
+
+                }
+
+
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,6 +142,22 @@ public class OrdersActivity extends AppCompatActivity {
         });
     }
 
+    private void getLastIndexValue() {
+        Query lastQuery = myRef.orderByKey().limitToLast(1);
+        lastQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Orders value = dataSnapshot.getValue(Orders.class);
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle possible errors.
+            }
+        });
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="20dp"
-                    android:text="Donate Food"
+                    android:text="Add Order"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimaryDark"
@@ -213,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:background="@color/colorPrimaryDark"
-                    android:text="Add Donation"
+                    android:text="Add Order"
                     android:textColor="@android:color/white"
                     android:textSize="18dp" />
 
