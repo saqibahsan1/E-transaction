@@ -18,7 +18,7 @@
     </style>
 
     <style name="MyTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/gradient</item>
+        <item name="android:windowBackground">@drawable/bg</item>
     </style>
 
     <style name="MyGravity" parent="Theme.AppCompat.Light" />
