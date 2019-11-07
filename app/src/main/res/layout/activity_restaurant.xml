@@ -52,6 +52,7 @@
                         android:gravity="center|start"
                         android:hint="Restaurant Name"
                         android:inputType="textPersonName"
+                        android:padding="10dp"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
@@ -78,6 +79,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
                         android:hint="Restaurant Email"
+                        android:padding="10dp"
                         android:inputType="textEmailAddress"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -105,6 +107,7 @@
                         android:gravity="center|start"
                         android:hint="Restaurant Contact Number"
                         android:inputType="number"
+                        android:padding="10dp"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
@@ -130,6 +133,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
                         android:hint="Restaurant NTN"
+                        android:padding="10dp"
                         android:inputType="number"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -156,6 +160,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
                         android:hint="Restaurant Address"
+                        android:padding="10dp"
                         android:inputType="textEmailAddress"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -182,6 +187,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
                         android:hint="Restaurant Specialty"
+                        android:padding="10dp"
                         android:inputType="text"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -200,7 +206,7 @@
                     android:id="@+id/btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:background="@color/colorPrimaryDark"
                     android:text="Add Organization"
                     android:textColor="@android:color/white"

@@ -52,6 +52,7 @@
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
+                        android:padding="10dp"
                         android:hint="Organization Name"
                         android:inputType="textPersonName"
                         android:textColor="@android:color/black"
@@ -80,6 +81,7 @@
                         android:gravity="center|start"
                         android:hint="Organization Email"
                         android:inputType="textEmailAddress"
+                        android:padding="10dp"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
@@ -107,6 +109,7 @@
                         android:hint="Organization Contact Number"
                         android:inputType="number"
                         android:textColor="@android:color/black"
+                        android:padding="10dp"
                         android:textSize="16sp" />
 
                     <ImageView
@@ -132,6 +135,7 @@
                         android:gravity="center|start"
                         android:hint="Organization Reg No"
                         android:inputType="number"
+                        android:padding="10dp"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
@@ -158,6 +162,7 @@
                         android:gravity="center|start"
                         android:hint="Organization Address"
                         android:inputType="textEmailAddress"
+                        android:padding="10dp"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
@@ -183,6 +188,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
                         android:hint="Organization Specialty"
+                        android:padding="10dp"
                         android:inputType="text"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -202,7 +208,7 @@
                     android:id="@+id/btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:background="@color/colorPrimaryDark"
                     android:text="Add Organization"
                     android:textColor="@android:color/white"

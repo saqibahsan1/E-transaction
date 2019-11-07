@@ -37,6 +37,10 @@
         <activity android:name=".ui.Activities.Login"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
     </application>
 
     <dist:module dist:instant="true" />

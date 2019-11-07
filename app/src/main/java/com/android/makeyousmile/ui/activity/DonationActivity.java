@@ -2,21 +2,26 @@ package com.android.makeyousmile.ui.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.makeyousmile.R;
 import com.android.makeyousmile.databinding.ActivityDeliveryBoyBinding;
 import com.android.makeyousmile.databinding.ActivityDonationBinding;
+import com.android.makeyousmile.ui.Utility.Utils;
 import com.android.makeyousmile.ui.adapter.DeliveryBoyAdapter;
 import com.android.makeyousmile.ui.adapter.DonationAdapter;
 import com.android.makeyousmile.ui.model.DeliveryBoy;
 import com.android.makeyousmile.ui.model.Donation;
+import com.android.makeyousmile.ui.model.Organization;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,9 +34,10 @@ import java.util.List;
 public class DonationActivity extends AppCompatActivity {
 
     ActivityDonationBinding binding;
-    DatabaseReference myRef;
+    DatabaseReference myRef,myRefUser;
     private List<Donation> donationList = new ArrayList<>();
     private DonationAdapter mAdapter;
+    private Donation donation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,78 @@ public class DonationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getData();
+        myRef = FirebaseDatabase.getInstance().getReference("Donation");
+        myRefUser = FirebaseDatabase.getInstance().getReference("UserDonation"+Utils.getInstance().getDefaults("userID",getApplicationContext()));
         initRecyclerView(binding.RecyclerView);
+
+        if (Utils.getInstance().getBoolean("isAdmin", getApplicationContext())) {
+            getData();
+        }else {
+            binding.RecyclerView.setVisibility(View.GONE);
+            binding.addLayout.setVisibility(View.VISIBLE);
+
+
+            binding.btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    donation = new Donation();
+                    if (TextUtils.isEmpty(binding.name.getText())) {
+                        binding.name.setError("Field is empty");
+                        return;
+                    }else if (TextUtils.isEmpty(binding.address.getText())) {
+                        binding.address.setError("Field is empty");
+                        return;
+                    } else if (TextUtils.isEmpty(binding.contactNumber.getText())) {
+                        binding.contactNumber.setError("Field is empty");
+                        return;
+                    } else if (TextUtils.isEmpty(binding.food.getText())) {
+                        binding.food.setError("Field is empty");
+                        return;
+                    }else if (TextUtils.isEmpty(binding.quantity.getText())) {
+                        binding.quantity.setError("Field is empty");
+                        return;
+                    }
+                    donation.setName(binding.name.getText().toString());
+                    donation.setAddress(binding.address.getText().toString());
+                    donation.setContactNumber(binding.contactNumber.getText().toString());
+                    donation.setQuantity(binding.quantity.getText().toString());
+                    donation.setFoodtype(binding.food.getText().toString());
+                    String id = myRef.push().getKey();
+                    if (id != null) {
+                        myRef.child(id).setValue(donation);
+                        myRefUser.child(id).setValue(donation);
+                        binding.quantity.setText("");
+                        binding.quantity.setText(null);
+                        binding.contactNumber.setText("");
+                        binding.contactNumber.setText(null);
+                        binding.address.setText("");
+                        binding.address.setText(null);
+                        binding.name.setText("");
+                        binding.name.setText(null);
+                        binding.food.setText("");
+                        binding.food.setText(null);
+                        Toast.makeText(DonationActivity.this, "Donation Added Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }
+
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.RecyclerView.getVisibility() == View.VISIBLE){
+                    binding.RecyclerView.setVisibility(View.GONE);
+                    binding.addLayout.setVisibility(View.VISIBLE);
+                }else {
+                    binding.RecyclerView.setVisibility(View.VISIBLE);
+                    binding.addLayout.setVisibility(View.GONE);
+                    getDataBYUser();
+                }
+
+
+            }
+        });
     }
 
 
@@ -64,7 +140,9 @@ public class DonationActivity extends AppCompatActivity {
 
 
     private void getData() {
-        myRef = FirebaseDatabase.getInstance().getReference("Donation");
+        binding.RecyclerView.setVisibility(View.VISIBLE);
+        binding.addLayout.setVisibility(View.GONE);
+        binding.fab.setVisibility(View.GONE);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -84,5 +162,30 @@ public class DonationActivity extends AppCompatActivity {
         });
 
     }
+
+
+    private void getDataBYUser() {
+        binding.RecyclerView.setVisibility(View.VISIBLE);
+        binding.addLayout.setVisibility(View.GONE);
+        myRefUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                donationList.clear();
+                for (DataSnapshot organization : dataSnapshot.getChildren()) {
+                    Donation value = organization.getValue(Donation.class);
+                    donationList.add(value);
+                }
+                mAdapter.setDonation(donationList);
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 
 }

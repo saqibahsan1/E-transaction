@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.android.makeyousmile.R;
 import com.android.makeyousmile.databinding.FragmentDashboardBinding;
+import com.android.makeyousmile.ui.Utility.Utils;
 import com.android.makeyousmile.ui.activity.DeliveryBoyActivity;
 import com.android.makeyousmile.ui.activity.DonationActivity;
 import com.android.makeyousmile.ui.activity.OrdersActivity;
@@ -38,6 +39,16 @@ public class DashboardFragment extends Fragment {
 
             }
         });
+
+        if (Utils.getInstance().getBoolean("isAdmin", getContext())) {
+            binding.user.setVisibility(View.VISIBLE);
+            binding.admin.setVisibility(View.VISIBLE);
+            binding.admin1.setVisibility(View.VISIBLE);
+        }else {
+            binding.user.setVisibility(View.VISIBLE);
+            binding.admin1.setVisibility(View.GONE);
+            binding.admin.setVisibility(View.GONE);
+        }
 
         binding.organization.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -52,22 +52,30 @@ public class Login extends AppCompatActivity {
             IdpResponse response = IdpResponse.fromResultIntent(data);
             if (resultCode == RESULT_OK) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user.getEmail() != null)
+                if (user.getEmail() != null) {
                     if (user != null && (Objects.requireNonNull(user.getEmail()).equalsIgnoreCase("fishialy123@gmail.com") || user.getEmail().equalsIgnoreCase("sanaashaikh231@gmail.com"))) {
                         Utils.getInstance().setBoolean("isAdmin", true, getApplicationContext());
-                    }
-                else {
+                        Utils.getInstance().setDefaults("userID",user.getUid(),getApplicationContext());
                         startActivity(new Intent(this, MainActivity.class));
                         finish();
                         Utils.getInstance().setBoolean("isLoggedIn", true, this);
                         Toast.makeText(this, "Welcome! " + user.getPhoneNumber(), Toast.LENGTH_LONG).show();
+
+                    }else {
+                        Utils.getInstance().setBoolean("isAdmin", false, getApplicationContext());
+                        Utils.getInstance().setDefaults("userID",user.getUid(),getApplicationContext());
+                        startActivity(new Intent(this, MainActivity.class));
+                        finish();
+                        Utils.getInstance().setBoolean("isLoggedIn", true, this);
+                        Toast.makeText(this, "Welcome! " + user.getDisplayName(), Toast.LENGTH_LONG).show();
                     }
-            } else {
-                if (response != null) {
-                    Toast.makeText(this, "" + response.getError().getMessage(), Toast.LENGTH_LONG).show();
+                } else {
+                    if (response != null) {
+                        Toast.makeText(this, "" + response.getError().getMessage(), Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         }
-    }
 
+    }
 }

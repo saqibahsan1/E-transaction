@@ -10,7 +10,8 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("Food for one (person) suffices two, and food for" +
+                "two (person) suffices four person and food four person suffices eight person.");
     }
 
     public LiveData<String> getText() {

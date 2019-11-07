@@ -53,6 +53,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
                         android:hint="Name"
+                        android:padding="10dp"
                         android:inputType="textPersonName"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -79,6 +80,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
                         android:hint="Email"
+                        android:padding="10dp"
                         android:inputType="textEmailAddress"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -106,6 +108,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
                         android:hint="Address"
+                        android:padding="10dp"
                         android:inputType="textEmailAddress"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -135,6 +138,7 @@
                         android:gravity="center|start"
                         android:hint="Contact Number"
                         android:inputType="number"
+                        android:padding="10dp"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
@@ -160,6 +164,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
                         android:hint="CNIC"
+                        android:padding="10dp"
                         android:inputType="number"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -187,6 +192,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
                         android:hint="Licence No"
+                        android:padding="10dp"
                         android:inputType="text"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -213,6 +219,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
                         android:hint="Vehicle No"
+                        android:padding="10dp"
                         android:inputType="text"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -231,7 +238,7 @@
                     android:id="@+id/btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:background="@color/colorPrimaryDark"
                     android:text="Add Organization"
                     android:textColor="@android:color/white"

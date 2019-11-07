@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="350dp">
+
+                <View
+                    android:background="@drawable/gradient_background_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/profile_image_view"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/make_you_smile" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_image_view"
+                    android:layout_centerHorizontal="true"
+                    android:text="Name"
+                    android:layout_marginTop="5dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:text="Your ID here"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/name" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:text="Your title here"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/id" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:drawablePadding="12dp"
+                android:id="@+id/logout"
+                android:padding="5dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:drawableLeft="@drawable/ic_logout"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content"
+                android:text="Logout" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>
