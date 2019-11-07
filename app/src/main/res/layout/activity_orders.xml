@@ -99,16 +99,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:id="@+id/address"
                     android:background="@drawable/custome_border"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/address"
+                    <TextView
+                        android:id="@+id/addressText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
-                        android:hint="Address"
+                        android:hint="Search Restaurant Address..."
                         android:padding="10dp"
                         android:inputType="textEmailAddress"
                         android:textColor="@android:color/black"
