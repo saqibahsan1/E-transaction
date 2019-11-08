@@ -61,8 +61,8 @@ public class OrdersActivity extends AppCompatActivity {
                     if (TextUtils.isEmpty(binding.name.getText())) {
                         binding.name.setError("Field is empty");
                         return;
-                    }else if (TextUtils.isEmpty(binding.address.getText())) {
-                        binding.address.setError("Field is empty");
+                    }else if (TextUtils.isEmpty(binding.addressText.getText())) {
+                        binding.addressText.setError("Field is empty");
                         return;
                     } else if (TextUtils.isEmpty(binding.contactNumber.getText())) {
                         binding.contactNumber.setError("Field is empty");
@@ -78,7 +78,7 @@ public class OrdersActivity extends AppCompatActivity {
                         return;
                     }
                     orders.setName(binding.name.getText().toString());
-                    orders.setAddress(binding.address.getText().toString());
+                    orders.setAddress(binding.addressText.getText().toString());
                     orders.setContactNumber(binding.contactNumber.getText().toString());
                     orders.setQuantity(binding.quantity.getText().toString());
                     orders.setFoodtype(binding.food.getText().toString());
@@ -91,8 +91,8 @@ public class OrdersActivity extends AppCompatActivity {
                         binding.quantity.setText(null);
                         binding.contactNumber.setText("");
                         binding.contactNumber.setText(null);
-                        binding.address.setText("");
-                        binding.address.setText(null);
+                        binding.addressText.setText("");
+                        binding.addressText.setText(null);
                         binding.name.setText("");
                         binding.name.setText(null);
                         binding.food.setText("");
@@ -111,7 +111,6 @@ public class OrdersActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    Orders value = dataSnapshot.getValue(Orders.class);
                     getLastIndexValue();
 
                 }

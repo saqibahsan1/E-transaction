@@ -29,6 +29,7 @@ public class ProfileFragment extends Fragment {
 
     private ProfileViewModel mViewModel;
     private ProfileFragmentBinding binding;
+    private String displayName,PhoneNumber,email;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -59,6 +60,16 @@ public class ProfileFragment extends Fragment {
                 });
             }
         });
+
+        displayName=Utils.getInstance().getDefaults("userDisplayName",getActivity());
+        email=Utils.getInstance().getDefaults("userEmail",getActivity());
+        PhoneNumber=Utils.getInstance().getDefaults("userPhone",getActivity());
+
+        binding.name.setText(displayName);
+        binding.id.setText(email);
+        binding.title.setText(PhoneNumber);
+
+
 
         return binding.getRoot();
 

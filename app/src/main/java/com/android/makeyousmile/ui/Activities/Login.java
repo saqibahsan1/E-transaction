@@ -55,26 +55,36 @@ public class Login extends AppCompatActivity {
                 if (user.getEmail() != null) {
                     if (user != null && (Objects.requireNonNull(user.getEmail()).equalsIgnoreCase("fishialy123@gmail.com") || user.getEmail().equalsIgnoreCase("sanaashaikh231@gmail.com"))) {
                         Utils.getInstance().setBoolean("isAdmin", true, getApplicationContext());
-                        Utils.getInstance().setDefaults("userID",user.getUid(),getApplicationContext());
+                        Utils.getInstance().setDefaults("userID", user.getUid(), getApplicationContext());
+                        Utils.getInstance().setDefaults("userDisplayName",user.getDisplayName(),getApplicationContext());
+                        Utils.getInstance().setDefaults("userEmail",user.getEmail(),getApplicationContext());
+                        Utils.getInstance().setDefaults("userPhone",user.getPhoneNumber(),getApplicationContext());
                         startActivity(new Intent(this, MainActivity.class));
                         finish();
                         Utils.getInstance().setBoolean("isLoggedIn", true, this);
                         Toast.makeText(this, "Welcome! " + user.getPhoneNumber(), Toast.LENGTH_LONG).show();
 
-                    }else {
+
+                    } else {
                         Utils.getInstance().setBoolean("isAdmin", false, getApplicationContext());
-                        Utils.getInstance().setDefaults("userID",user.getUid(),getApplicationContext());
+                        Utils.getInstance().setDefaults("userID", user.getUid(), getApplicationContext());
                         startActivity(new Intent(this, MainActivity.class));
                         finish();
                         Utils.getInstance().setBoolean("isLoggedIn", true, this);
                         Toast.makeText(this, "Welcome! " + user.getDisplayName(), Toast.LENGTH_LONG).show();
+                        Utils.getInstance().setDefaults("userDisplayName", user.getDisplayName(), getApplicationContext());
+                        Utils.getInstance().setDefaults("userEmail", user.getEmail(), getApplicationContext());
+                        Utils.getInstance().setDefaults("userPhone", user.getPhoneNumber(), getApplicationContext());
                     }
                 } else {
-                        Utils.getInstance().setBoolean("isAdmin", false, getApplicationContext());
-                        Utils.getInstance().setDefaults("userID",user.getUid(),getApplicationContext());
-                        startActivity(new Intent(this, MainActivity.class));
-                        finish();
-                        Utils.getInstance().setBoolean("isLoggedIn", true, this);
+                    Utils.getInstance().setBoolean("isAdmin", false, getApplicationContext());
+                    Utils.getInstance().setDefaults("userID", user.getUid(), getApplicationContext());
+                    Utils.getInstance().setDefaults("userDisplayName", user.getDisplayName(), getApplicationContext());
+                    Utils.getInstance().setDefaults("userEmail", user.getEmail(), getApplicationContext());
+                    Utils.getInstance().setDefaults("userPhone", user.getPhoneNumber(), getApplicationContext());
+                    startActivity(new Intent(this, MainActivity.class));
+                    finish();
+                    Utils.getInstance().setBoolean("isLoggedIn", true, this);
                 }
             }
         }
