@@ -149,10 +149,11 @@ public class OrdersActivity extends AppCompatActivity {
         lastQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Orders value = (Orders) dataSnapshot.getValue(Orders.class);
-
-                updateStatus(value);
+                Orders value;
+                for (DataSnapshot organization : dataSnapshot.getChildren()) {
+                    value = organization.getValue(Orders.class);
+                    updateStatus(value);
+                }
 
             }
             @Override
