@@ -103,7 +103,7 @@
                     android:background="@drawable/custome_border"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/addressText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

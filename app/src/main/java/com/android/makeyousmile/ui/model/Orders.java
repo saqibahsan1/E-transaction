@@ -8,6 +8,9 @@ public class Orders {
     private String quantity;
     private String foodtype;
     private String payment;
+    private String orderName;
+    private String status;
+    private String token;
 
     public String getName() {
         return name;
@@ -58,4 +61,27 @@ public class Orders {
         this.payment = payment;
     }
 
+    public String getOrderName() {
+        return orderName;
+    }
+
+    public void setOrderName(String orderName) {
+        this.orderName = orderName;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

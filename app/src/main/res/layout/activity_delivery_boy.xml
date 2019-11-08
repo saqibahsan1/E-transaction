@@ -240,7 +240,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:background="@color/colorPrimaryDark"
-                    android:text="Add Organization"
+                    android:text="Add Delivery Boy"
                     android:textColor="@android:color/white"
                     android:textSize="18dp" />
 

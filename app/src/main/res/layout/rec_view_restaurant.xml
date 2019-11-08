@@ -40,7 +40,7 @@
                     android:padding="5dp"
                     android:text="Restaurant"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -66,7 +66,7 @@
                     android:padding="5dp"
                     android:text="contact Number"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -96,7 +96,7 @@
                     android:padding="5dp"
                     android:text="Address"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -122,7 +122,7 @@
                     android:padding="5dp"
                     android:text="Specialty"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

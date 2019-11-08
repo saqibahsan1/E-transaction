@@ -83,6 +83,9 @@ public class OrdersActivity extends AppCompatActivity {
                     orders.setQuantity(binding.quantity.getText().toString());
                     orders.setFoodtype(binding.food.getText().toString());
                     orders.setPayment(binding.payment.getText().toString());
+                    orders.setStatus("Pending");
+                    orders.setToken(Utils.getInstance().getDefaults("token",getApplicationContext()));
+                    orders.setOrderName(Utils.getInstance().getDefaults("userDisplayName",getApplicationContext()));
                     id = myRef.push().getKey();
                     if (id != null) {
                         myRef.child(id).setValue(orders);

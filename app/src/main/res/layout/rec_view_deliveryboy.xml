@@ -40,7 +40,7 @@
                     android:padding="5dp"
                     android:text="Name"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -66,7 +66,7 @@
                     android:padding="5dp"
                     android:text="contact Number"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -93,7 +93,7 @@
                     android:padding="5dp"
                     android:text="CNic"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -121,7 +121,7 @@
                     android:padding="5dp"
                     android:text="Address"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -148,7 +148,7 @@
                     android:padding="5dp"
                     android:text="vehicle"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -174,7 +174,7 @@
                     android:padding="5dp"
                     android:text="Licence"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

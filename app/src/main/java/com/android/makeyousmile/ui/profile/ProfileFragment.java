@@ -69,8 +69,6 @@ public class ProfileFragment extends Fragment {
         binding.id.setText(email);
         binding.title.setText(PhoneNumber);
 
-
-
         return binding.getRoot();
 
     }

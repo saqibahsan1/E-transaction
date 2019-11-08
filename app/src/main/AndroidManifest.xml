@@ -69,5 +69,9 @@
         android:resource="@color/colorAccent" />
 
     <dist:module dist:instant="true" />
+
+
+
+
     </application>
 </manifest>

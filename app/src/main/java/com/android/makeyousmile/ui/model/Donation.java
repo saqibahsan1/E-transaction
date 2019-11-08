@@ -7,6 +7,9 @@ public class Donation {
     private String contactNumber;
     private String quantity;
     private String foodtype;
+    private String orderName;
+    private String status;
+    private String token;
 
     public String getName() {
         return name;
@@ -47,5 +50,29 @@ public class Donation {
 
     public void setFoodtype(String foodtype) {
         this.foodtype = foodtype;
+    }
+
+    public String getOrderName() {
+        return orderName;
+    }
+
+    public void setOrderName(String orderName) {
+        this.orderName = orderName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

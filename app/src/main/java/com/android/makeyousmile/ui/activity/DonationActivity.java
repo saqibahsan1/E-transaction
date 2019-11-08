@@ -82,6 +82,9 @@ public class DonationActivity extends AppCompatActivity {
                     donation.setContactNumber(binding.contactNumber.getText().toString());
                     donation.setQuantity(binding.quantity.getText().toString());
                     donation.setFoodtype(binding.food.getText().toString());
+                    donation.setStatus("Pending");
+                    donation.setToken(Utils.getInstance().getDefaults("token",getApplicationContext()));
+                    donation.setOrderName(Utils.getInstance().getDefaults("userDisplayName",getApplicationContext()));
                     String id = myRef.push().getKey();
                     if (id != null) {
                         myRef.child(id).setValue(donation);
