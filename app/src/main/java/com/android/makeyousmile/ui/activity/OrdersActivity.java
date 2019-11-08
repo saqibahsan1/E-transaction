@@ -150,7 +150,9 @@ public class OrdersActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Orders value = dataSnapshot.getValue(Orders.class);
+                Orders value = (Orders) dataSnapshot.getValue(Orders.class);
+
+                updateStatus(value);
 
             }
             @Override
@@ -223,6 +225,22 @@ public class OrdersActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    private void updateStatus(Orders orders){
+
+//        orders.setName(orders.getName());
+//        orders.setAddress(orders.getAddress());
+//        orders.setContactNumber(orders.getContactNumber());
+//        orders.setQuantity(orders.getQuantity());
+//        orders.setFoodtype(orders.getFoodtype());
+//        orders.setPayment(orders.getPayment());
+//        orders.setStatus("Accepted");
+//        orders.setToken(Utils.getInstance().getDefaults("token",getApplicationContext()));
+//        orders.setOrderName(Utils.getInstance().getDefaults("userDisplayName",getApplicationContext()));
+//        myRef.child(id).setValue(orders);
+//        myRefUser.child(id).setValue(orders);
 
     }
 
