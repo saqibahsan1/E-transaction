@@ -100,10 +100,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:id="@+id/address"
+                    android:focusable="true"
                     android:background="@drawable/custome_border"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/addressText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
