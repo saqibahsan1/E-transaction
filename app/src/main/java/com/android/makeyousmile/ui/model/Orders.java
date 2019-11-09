@@ -2,6 +2,7 @@ package com.android.makeyousmile.ui.model;
 
 public class Orders {
 
+    private String key;
     private String name;
     private String address;
     private String contactNumber;
@@ -11,6 +12,16 @@ public class Orders {
     private String orderName;
     private String status;
     private String token;
+
+
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getName() {
         return name;

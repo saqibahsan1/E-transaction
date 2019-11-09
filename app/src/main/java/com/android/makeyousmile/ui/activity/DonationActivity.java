@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.android.makeyousmile.R;
 import com.android.makeyousmile.databinding.ActivityDeliveryBoyBinding;
 import com.android.makeyousmile.databinding.ActivityDonationBinding;
+import com.android.makeyousmile.ui.Utility.DonaationItemListner;
 import com.android.makeyousmile.ui.Utility.Utils;
 import com.android.makeyousmile.ui.adapter.DeliveryBoyAdapter;
 import com.android.makeyousmile.ui.adapter.DonationAdapter;
@@ -31,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DonationActivity extends AppCompatActivity {
+public class DonationActivity extends AppCompatActivity implements DonaationItemListner {
 
     ActivityDonationBinding binding;
     DatabaseReference myRef,myRefUser;
@@ -47,7 +48,7 @@ public class DonationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         myRef = FirebaseDatabase.getInstance().getReference("Donation");
-        myRefUser = FirebaseDatabase.getInstance().getReference("UserDonation"+Utils.getInstance().getDefaults("userID",getApplicationContext()));
+        myRefUser = FirebaseDatabase.getInstance().getReference("UserDonation");
         initRecyclerView(binding.RecyclerView);
 
         if (Utils.getInstance().getBoolean("isAdmin", getApplicationContext())) {
@@ -88,7 +89,7 @@ public class DonationActivity extends AppCompatActivity {
                     String id = myRef.push().getKey();
                     if (id != null) {
                         myRef.child(id).setValue(donation);
-                        myRefUser.child(id).setValue(donation);
+                        myRefUser.child(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext())).child(id).setValue(donation);
                         binding.quantity.setText("");
                         binding.quantity.setText(null);
                         binding.contactNumber.setText("");
@@ -136,7 +137,7 @@ public class DonationActivity extends AppCompatActivity {
     private void initRecyclerView(RecyclerView recyclerViewLabel) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mAdapter = new DonationAdapter(getApplicationContext());
+        mAdapter = new DonationAdapter(getApplicationContext(),this);
         recyclerViewLabel.setLayoutManager(mLayoutManager);
         recyclerViewLabel.setAdapter(mAdapter);
     }
@@ -152,6 +153,7 @@ public class DonationActivity extends AppCompatActivity {
                 donationList.clear();
                 for (DataSnapshot organization : dataSnapshot.getChildren()) {
                     Donation value = organization.getValue(Donation.class);
+                    value.setKey(organization.getKey());
                     donationList.add(value);
                 }
                 mAdapter.setDonation(donationList);
@@ -170,7 +172,7 @@ public class DonationActivity extends AppCompatActivity {
     private void getDataBYUser() {
         binding.RecyclerView.setVisibility(View.VISIBLE);
         binding.addLayout.setVisibility(View.GONE);
-        myRefUser.addValueEventListener(new ValueEventListener() {
+        myRefUser.child(Utils.getInstance().getDefaults("userDisplayName",getApplicationContext())).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 donationList.clear();
@@ -191,4 +193,19 @@ public class DonationActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onOrderItemClicked(Donation orders, String status) {
+        Donation order = new Donation();
+        order.setName(orders.getName());
+        order.setAddress(orders.getAddress());
+        order.setContactNumber(orders.getContactNumber());
+        order.setQuantity(orders.getQuantity());
+        order.setFoodtype(orders.getFoodtype());
+        order.setStatus(status);
+        order.setToken(Utils.getInstance().getDefaults("token", getApplicationContext()));
+        order.setOrderName(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext()));
+        myRef.child(orders.getKey()).setValue(order);
+        myRefUser.child(orders.getOrderName()).child(orders.getKey()).setValue(order);
+        mAdapter.notifyDataSetChanged();
+    }
 }

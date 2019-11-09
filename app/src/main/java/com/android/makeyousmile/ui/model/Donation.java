@@ -2,6 +2,15 @@ package com.android.makeyousmile.ui.model;
 
 public class Donation {
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    private String key;
     private String name;
     private String address;
     private String contactNumber;

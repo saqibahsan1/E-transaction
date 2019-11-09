@@ -43,8 +43,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         if (Utils.getInstance().getBoolean("isAdmin", getApplicationContext())) {
-
             FirebaseMessaging.getInstance().subscribeToTopic("admin")
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (!task.isSuccessful()) {
+
+                            }
+                        }
+                    });
+        }else {
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("admin")
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

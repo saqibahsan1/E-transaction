@@ -131,13 +131,13 @@ public class RestaurantActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Utils.getInstance().ShowProgress(RestaurantActivity.this);
+//                Utils.getInstance().ShowProgress(RestaurantActivity.this);
                 restaurantList.clear();
                 for (DataSnapshot organization : dataSnapshot.getChildren()) {
                     Restaurant value = organization.getValue(Restaurant.class);
                     restaurantList.add(value);
                 }
-                Utils.getInstance().HideProgress();
+//                Utils.getInstance().HideProgress();
                 mAdapter.setRestaurant(restaurantList);
                 mAdapter.notifyDataSetChanged();
             }

@@ -207,6 +207,40 @@
             </LinearLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="accept"
+                    android:textAllCaps="true"
+                    android:id="@+id/accept"
+                    android:background="@drawable/button_bg"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/reject"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg_red"
+                    android:text="REJECT"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@android:color/white"
+                    android:layout_height="match_parent"
+                    android:padding="5dp" />
+
+            </LinearLayout>
 
 
 
