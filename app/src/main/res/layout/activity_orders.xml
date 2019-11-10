@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".ui.activity.OrdersActivity">
 
 
@@ -22,8 +23,6 @@
                 android:id="@+id/addLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:orientation="vertical"
@@ -43,6 +42,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/custome_border"
                     android:orientation="horizontal">
@@ -105,7 +105,7 @@
                     android:background="@drawable/custome_border"
                     android:orientation="horizontal">
 
-                    <AutoCompleteTextView
+                    <TextView
                         android:id="@+id/addressText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

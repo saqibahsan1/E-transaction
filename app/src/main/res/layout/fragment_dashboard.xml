@@ -217,10 +217,11 @@
                     android:weightSum="2">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         app:cardElevation="15dp"
                         android:layout_weight="1"
                         android:layout_margin="5dp"
+                        android:layout_gravity="center"
                         app:cardCornerRadius="15dp"
                         android:layout_height="wrap_content">
 
@@ -261,6 +262,7 @@
                         app:cardElevation="15dp"
                         android:layout_weight="1"
                         android:layout_margin="5dp"
+                        android:visibility="gone"
                         app:cardCornerRadius="15dp"
                         android:layout_height="wrap_content">
                     <LinearLayout

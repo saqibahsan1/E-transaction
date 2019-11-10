@@ -126,6 +126,7 @@ public class OrganizationActivity extends AppCompatActivity {
 
 
     private void getData(){
+        Utils.getInstance().ShowProgress(OrganizationActivity.this);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -136,6 +137,7 @@ public class OrganizationActivity extends AppCompatActivity {
                 }
                 mAdapter.setOrganization(organizationList);
                 mAdapter.notifyDataSetChanged();
+                Utils.getInstance().HideProgress();
             }
 
             @Override

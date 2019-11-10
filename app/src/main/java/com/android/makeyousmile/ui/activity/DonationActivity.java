@@ -1,12 +1,14 @@
 package com.android.makeyousmile.ui.activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -28,6 +30,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.shivtechs.maplocationpicker.LocationPickerActivity;
+import com.shivtechs.maplocationpicker.MapUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +43,8 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
     private List<Donation> donationList = new ArrayList<>();
     private DonationAdapter mAdapter;
     private Donation donation;
+    private int requestCodeAddress = 3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,11 +124,34 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
                     binding.addLayout.setVisibility(View.GONE);
                     getDataBYUser();
                 }
+            }
+        });
 
-
+        binding.address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DonationActivity.this, LocationPickerActivity.class);
+                startActivityForResult(intent, requestCodeAddress);
             }
         });
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == requestCodeAddress) {
+
+            try {
+                if (data != null && data.getStringExtra(MapUtility.ADDRESS) != null) {
+                    String address = data.getStringExtra(MapUtility.ADDRESS);
+                    binding.address.setText(address);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
 
 
     @Override
@@ -144,6 +173,7 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
 
 
     private void getData() {
+        Utils.getInstance().ShowProgress(DonationActivity.this);
         binding.RecyclerView.setVisibility(View.VISIBLE);
         binding.addLayout.setVisibility(View.GONE);
         binding.fab.setVisibility(View.GONE);
@@ -158,6 +188,7 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
                 }
                 mAdapter.setDonation(donationList);
                 mAdapter.notifyDataSetChanged();
+                Utils.getInstance().HideProgress();
             }
 
             @Override
@@ -170,6 +201,7 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
 
 
     private void getDataBYUser() {
+        Utils.getInstance().ShowProgress(DonationActivity.this);
         binding.RecyclerView.setVisibility(View.VISIBLE);
         binding.addLayout.setVisibility(View.GONE);
         myRefUser.child(Utils.getInstance().getDefaults("userDisplayName",getApplicationContext())).addValueEventListener(new ValueEventListener() {
@@ -182,6 +214,7 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
                 }
                 mAdapter.setDonation(donationList);
                 mAdapter.notifyDataSetChanged();
+                Utils.getInstance().HideProgress();
             }
 
             @Override

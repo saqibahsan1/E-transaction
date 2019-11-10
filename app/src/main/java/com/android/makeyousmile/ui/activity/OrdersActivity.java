@@ -21,24 +21,20 @@ import com.android.makeyousmile.ui.Utility.Utils;
 import com.android.makeyousmile.ui.adapter.OrderAdapter;
 import com.android.makeyousmile.ui.model.Orders;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.model.RectangularBounds;
-import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.shivtechs.maplocationpicker.LocationPickerActivity;
+import com.shivtechs.maplocationpicker.MapUtility;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class OrdersActivity extends AppCompatActivity implements OrderItemListner {
@@ -49,7 +45,7 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
     private OrderAdapter mAdapter;
     private Orders orders;
     private String id;
-    private int requestCode = 2;
+    private int requestCodeAddress = 2;
     PlacesClient placesClient;
 
     @Override
@@ -124,7 +120,6 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
 
         }
 
-
 //        myRef.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -139,7 +134,6 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
 //
 //            }
 //        });
-
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,35 +154,48 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
             @Override
             public void onClick(View v) {
 
-
-                List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS
-                        , Place.Field.LAT_LNG);
-                Intent autocompleteIntent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, placeFields)
-                        .setTypeFilter(TypeFilter.ADDRESS)
-                        .setLocationRestriction(RectangularBounds.newInstance(
-                                new LatLng(24.926294, 67.022095),
-                                new LatLng(30.3753, 69.3451)))
-                        .setCountry("pakistan")
-                        .build(OrdersActivity.this);
-
-                startActivityForResult(autocompleteIntent, requestCode);
+                Intent intent = new Intent(OrdersActivity.this, LocationPickerActivity.class);
+                startActivityForResult(intent, requestCodeAddress);
+//                List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS
+//                        , Place.Field.LAT_LNG);
+//                Intent autocompleteIntent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, placeFields)
+//                        .setTypeFilter(TypeFilter.ADDRESS)
+//                        .setLocationRestriction(RectangularBounds.newInstance(
+//                                new LatLng(24.926294, 67.022095),
+//                                new LatLng(30.3753, 69.3451)))
+//                        .setCountry("pakistan")
+//                        .build(OrdersActivity.this);
+//
+//                startActivityForResult(autocompleteIntent, requestCodeAddress);
             }
         });
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
-        if (resultCode == AutocompleteActivity.RESULT_OK) {
-            Place place = Autocomplete.getPlaceFromIntent(intent);
-            place.getName();
-            place.getAddress();
-            binding.addressText.setText(place.getAddress());
-        } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-            Status status = Autocomplete.getStatusFromIntent(intent);
-        } else if (resultCode == AutocompleteActivity.RESULT_CANCELED) {
-            // The user canceled the operation.
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == requestCodeAddress) {
+
+            try {
+                if (data != null && data.getStringExtra(MapUtility.ADDRESS) != null) {
+                    String address = data.getStringExtra(MapUtility.ADDRESS);
+                    binding.addressText.setText(address);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
-        super.onActivityResult(requestCode, resultCode, intent);
+
+//            Place place = Autocomplete.getPlaceFromIntent(intent);
+//            place.getName();
+//            place.getAddress();
+//            binding.addressText.setText(place.getAddress());
+//        } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+//            Status status = Autocomplete.getStatusFromIntent(intent);
+//        } else if (resultCode == AutocompleteActivity.RESULT_CANCELED) {
+//            // The user canceled the operation.
+//        }
+
     }
 
 //    private void getLastIndexValue() {

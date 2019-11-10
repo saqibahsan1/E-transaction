@@ -136,7 +136,7 @@ public class DeliveryBoyActivity extends AppCompatActivity {
     }
 
     private void getData() {
-
+        Utils.getInstance().ShowProgress(DeliveryBoyActivity.this);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -147,6 +147,7 @@ public class DeliveryBoyActivity extends AppCompatActivity {
                 }
                 mAdapter.setDeliveryBoy(deliveryBoyList);
                 mAdapter.notifyDataSetChanged();
+                Utils.getInstance().HideProgress();
             }
 
             @Override

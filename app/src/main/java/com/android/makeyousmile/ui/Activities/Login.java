@@ -29,8 +29,8 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
 
         providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build(),
-                new AuthUI.IdpConfig.PhoneBuilder().build()
+                new AuthUI.IdpConfig.EmailBuilder().build()
+//                new AuthUI.IdpConfig.PhoneBuilder().build()
         );
         showSignInOptions();
 
@@ -62,7 +62,7 @@ public class Login extends AppCompatActivity {
                         startActivity(new Intent(this, MainActivity.class));
                         finish();
                         Utils.getInstance().setBoolean("isLoggedIn", true, this);
-                        Toast.makeText(this, "Welcome! " + user.getPhoneNumber(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Welcome! " + user.getDisplayName(), Toast.LENGTH_LONG).show();
 
 
                     } else {
