@@ -2,9 +2,11 @@ package com.android.makeyousmile.ui.dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -44,10 +46,15 @@ public class DashboardFragment extends Fragment {
             binding.user.setVisibility(View.VISIBLE);
             binding.admin.setVisibility(View.VISIBLE);
             binding.admin1.setVisibility(View.VISIBLE);
+            binding.scrollView.setBackgroundColor(getResources().getColor(R.color.quantum_white_100));
         }else {
             binding.user.setVisibility(View.VISIBLE);
-            binding.admin1.setVisibility(View.GONE);
-            binding.admin.setVisibility(View.GONE);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            binding.scrollView.setBackground(getResources().getDrawable(R.drawable.bg));
+            layoutParams.setMargins(0, 0, 0, 10);
+            binding.user.setLayoutParams(layoutParams);
+            binding.admin1.setVisibility(View.INVISIBLE);
+            binding.admin.setVisibility(View.INVISIBLE);
         }
 
         binding.organization.setOnClickListener(new View.OnClickListener() {

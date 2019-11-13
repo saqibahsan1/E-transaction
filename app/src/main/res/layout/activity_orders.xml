@@ -195,7 +195,7 @@
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
-                        android:hint="Payment"
+                        android:hint="Your Budget"
                         android:padding="10dp"
                         android:inputType="number"
                         android:textColor="@android:color/black"
