@@ -1,4 +1,4 @@
-package com.android.makeyousmile.ui.activity;
+package com.android.makeyousmile.ui.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,12 +20,8 @@ import com.android.makeyousmile.ui.Utility.OrderItemListner;
 import com.android.makeyousmile.ui.Utility.Utils;
 import com.android.makeyousmile.ui.adapter.OrderAdapter;
 import com.android.makeyousmile.ui.model.Orders;
-import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.libraries.places.widget.Autocomplete;
-import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -76,11 +72,11 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
                     } else if (TextUtils.isEmpty(binding.contactNumber.getText())) {
                         binding.contactNumber.setError("Field is empty");
                         return;
-                    } else if (TextUtils.isEmpty(binding.food.getText())) {
-                        binding.food.setError("Field is empty");
+                    } else if (TextUtils.isEmpty(binding.bitcoinBalanance.getText())) {
+                        binding.bitcoinBalanance.setError("Field is empty");
                         return;
-                    } else if (TextUtils.isEmpty(binding.quantity.getText())) {
-                        binding.quantity.setError("Field is empty");
+                    } else if (TextUtils.isEmpty(binding.setAmount.getText())) {
+                        binding.setAmount.setError("Field is empty");
                         return;
                     } else if (TextUtils.isEmpty(binding.payment.getText())) {
                         binding.payment.setError("Field is empty");
@@ -90,8 +86,8 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
                     orders.setName(binding.name.getText().toString());
                     orders.setAddress(binding.addressText.getText().toString());
                     orders.setContactNumber(binding.contactNumber.getText().toString());
-                    orders.setQuantity(binding.quantity.getText().toString());
-                    orders.setFoodtype(binding.food.getText().toString());
+                    orders.setEthereumBalance(binding.setAmount.getText().toString());
+                    orders.setBitcoinBalance(binding.bitcoinBalanance.getText().toString());
                     orders.setPayment(binding.payment.getText().toString());
                     orders.setStatus("Pending");
                     orders.setToken(Utils.getInstance().getDefaults("token", getApplicationContext()));
@@ -100,16 +96,16 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
                     if (id != null) {
                         myRef.child(id).setValue(orders);
                         myRefUser.child(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext())).child(id).setValue(orders);
-                        binding.quantity.setText("");
-                        binding.quantity.setText(null);
+                        binding.setAmount.setText("");
+                        binding.setAmount.setText(null);
                         binding.contactNumber.setText("");
                         binding.contactNumber.setText(null);
                         binding.addressText.setText("");
                         binding.addressText.setText(null);
                         binding.name.setText("");
                         binding.name.setText(null);
-                        binding.food.setText("");
-                        binding.food.setText(null);
+                        binding.bitcoinBalanance.setText("");
+                        binding.bitcoinBalanance.setText(null);
                         binding.payment.setText("");
                         binding.payment.setText(null);
                         Toast.makeText(OrdersActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
@@ -310,8 +306,8 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
         order.setName(orders.getName());
         order.setAddress(orders.getAddress());
         order.setContactNumber(orders.getContactNumber());
-        order.setQuantity(orders.getQuantity());
-        order.setFoodtype(orders.getFoodtype());
+        order.setEthereumBalance(orders.getEthereumBalance());
+        order.setBitcoinBalance(orders.getBitcoinBalance());
         order.setPayment(orders.getPayment());
         order.setStatus(status);
         order.setToken(Utils.getInstance().getDefaults("token", getApplicationContext()));

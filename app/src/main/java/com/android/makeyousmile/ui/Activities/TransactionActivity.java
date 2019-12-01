@@ -1,9 +1,8 @@
-package com.android.makeyousmile.ui.activity;
+package com.android.makeyousmile.ui.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,15 +15,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.android.makeyousmile.R;
-import com.android.makeyousmile.databinding.ActivityDeliveryBoyBinding;
 import com.android.makeyousmile.databinding.ActivityDonationBinding;
 import com.android.makeyousmile.ui.Utility.DonaationItemListner;
 import com.android.makeyousmile.ui.Utility.Utils;
-import com.android.makeyousmile.ui.adapter.DeliveryBoyAdapter;
 import com.android.makeyousmile.ui.adapter.DonationAdapter;
-import com.android.makeyousmile.ui.model.DeliveryBoy;
 import com.android.makeyousmile.ui.model.Donation;
-import com.android.makeyousmile.ui.model.Organization;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -77,18 +72,18 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
                     } else if (TextUtils.isEmpty(binding.contactNumber.getText())) {
                         binding.contactNumber.setError("Field is empty");
                         return;
-                    } else if (TextUtils.isEmpty(binding.food.getText())) {
-                        binding.food.setError("Field is empty");
+                    } else if (TextUtils.isEmpty(binding.bitcoinBalanance.getText())) {
+                        binding.bitcoinBalanance.setError("Field is empty");
                         return;
-                    }else if (TextUtils.isEmpty(binding.quantity.getText())) {
-                        binding.quantity.setError("Field is empty");
+                    }else if (TextUtils.isEmpty(binding.setAmount.getText())) {
+                        binding.setAmount.setError("Field is empty");
                         return;
                     }
                     donation.setName(binding.name.getText().toString());
                     donation.setAddress(binding.address.getText().toString());
                     donation.setContactNumber(binding.contactNumber.getText().toString());
-                    donation.setQuantity(binding.quantity.getText().toString());
-                    donation.setFoodtype(binding.food.getText().toString());
+                    donation.setSetAmount(binding.setAmount.getText().toString());
+                    donation.setCurrencyType(binding.bitcoinBalanance.getText().toString());
                     donation.setStatus("Pending");
                     donation.setToken(Utils.getInstance().getDefaults("token",getApplicationContext()));
                     donation.setOrderName(Utils.getInstance().getDefaults("userDisplayName",getApplicationContext()));
@@ -96,16 +91,16 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
                     if (id != null) {
                         myRef.child(id).setValue(donation);
                         myRefUser.child(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext())).child(id).setValue(donation);
-                        binding.quantity.setText("");
-                        binding.quantity.setText(null);
+                        binding.setAmount.setText("");
+                        binding.setAmount.setText(null);
                         binding.contactNumber.setText("");
                         binding.contactNumber.setText(null);
                         binding.address.setText("");
                         binding.address.setText(null);
                         binding.name.setText("");
                         binding.name.setText(null);
-                        binding.food.setText("");
-                        binding.food.setText(null);
+                        binding.bitcoinBalanance.setText("");
+                        binding.bitcoinBalanance.setText(null);
                         Toast.makeText(DonationActivity.this, "Donation Added Successfully", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -232,8 +227,8 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
         order.setName(orders.getName());
         order.setAddress(orders.getAddress());
         order.setContactNumber(orders.getContactNumber());
-        order.setQuantity(orders.getQuantity());
-        order.setFoodtype(orders.getFoodtype());
+        order.setSetAmount(orders.getSetAmount());
+        order.setCurrencyType(orders.getCurrencyType());
         order.setStatus(status);
         order.setToken(Utils.getInstance().getDefaults("token", getApplicationContext()));
         order.setOrderName(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext()));

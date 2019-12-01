@@ -6,8 +6,8 @@ public class Orders {
     private String name;
     private String address;
     private String contactNumber;
-    private String quantity;
-    private String foodtype;
+    private String EthereumBalance;
+    private String BitcoinBalance;
     private String payment;
     private String orderName;
     private String status;
@@ -48,20 +48,20 @@ public class Orders {
     }
 
 
-    public String getQuantity() {
-        return quantity;
+    public String getEthereumBalance() {
+        return EthereumBalance;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setEthereumBalance(String ethereumBalance) {
+        this.EthereumBalance = ethereumBalance;
     }
 
-    public String getFoodtype() {
-        return foodtype;
+    public String getBitcoinBalance() {
+        return BitcoinBalance;
     }
 
-    public void setFoodtype(String foodtype) {
-        this.foodtype = foodtype;
+    public void setBitcoinBalance(String bitcoinBalance) {
+        this.BitcoinBalance = bitcoinBalance;
     }
 
     public String getPayment() {

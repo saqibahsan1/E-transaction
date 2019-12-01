@@ -15,7 +15,6 @@ import com.android.makeyousmile.R;
 import com.android.makeyousmile.ui.Utility.DonaationItemListner;
 import com.android.makeyousmile.ui.Utility.Utils;
 import com.android.makeyousmile.ui.model.Donation;
-import com.android.makeyousmile.ui.model.Organization;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,10 +74,10 @@ public class DonationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         customViewHolder.name.setText(organization.getName());
         customViewHolder.contact.setText(organization.getContactNumber());
         customViewHolder.addess.setText(organization.getAddress());
-        customViewHolder.foodtype.setText(organization.getFoodtype());
-        customViewHolder.quantity.setText(organization.getQuantity());
+        customViewHolder.foodtype.setText(organization.getCurrencyType());
+        customViewHolder.quantity.setText(organization.getSetAmount());
 
-        customViewHolder.orderName.setText("Donation By :"+ organization.getOrderName());
+        customViewHolder.orderName.setText("Transaction By "+ organization.getOrderName());
 
         customViewHolder.status.setText(organization.getStatus());
 
@@ -107,8 +106,8 @@ public class DonationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             name = itemView.findViewById(R.id.name);
             contact = itemView.findViewById(R.id.contactNumber);
             addess = itemView.findViewById(R.id.address);
-            foodtype = itemView.findViewById(R.id.food);
-            quantity = itemView.findViewById(R.id.quantity);
+            foodtype = itemView.findViewById(R.id.bitcoinBalanance);
+            quantity = itemView.findViewById(R.id.setAmount);
             orderName = itemView.findViewById(R.id.orderedName);
             status = itemView.findViewById(R.id.status);
             statusColor = itemView.findViewById(R.id.textColor);

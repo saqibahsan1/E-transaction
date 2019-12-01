@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.makeyousmile.R;
 import com.android.makeyousmile.ui.Utility.OrderItemListner;
 import com.android.makeyousmile.ui.Utility.Utils;
-import com.android.makeyousmile.ui.model.Donation;
 import com.android.makeyousmile.ui.model.Orders;
 
 import java.util.ArrayList;
@@ -79,10 +78,10 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         customViewHolder.name.setText(organization.getName());
         customViewHolder.contact.setText(organization.getContactNumber());
         customViewHolder.addess.setText(organization.getAddress());
-        customViewHolder.foodtype.setText(organization.getFoodtype());
-        customViewHolder.quantity.setText(organization.getQuantity());
+        customViewHolder.foodtype.setText(organization.getBitcoinBalance());
+        customViewHolder.quantity.setText(organization.getEthereumBalance());
         customViewHolder.payment.setText(organization.getPayment());
-        customViewHolder.orderName.setText("Order By : "+organization.getOrderName());
+        customViewHolder.orderName.setText("Requested User "+organization.getOrderName());
         customViewHolder.status.setText(organization.getStatus());
 
         if (organization.getStatus().equalsIgnoreCase("Pending")){
@@ -111,8 +110,8 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             name = itemView.findViewById(R.id.name);
             contact = itemView.findViewById(R.id.contactNumber);
             addess = itemView.findViewById(R.id.address);
-            foodtype = itemView.findViewById(R.id.food);
-            quantity = itemView.findViewById(R.id.quantity);
+            foodtype = itemView.findViewById(R.id.bitcoinBalanance);
+            quantity = itemView.findViewById(R.id.setAmount);
             payment = itemView.findViewById(R.id.payment);
             orderName = itemView.findViewById(R.id.orderedName);
             status = itemView.findViewById(R.id.status);

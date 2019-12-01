@@ -14,8 +14,8 @@ public class Donation {
     private String name;
     private String address;
     private String contactNumber;
-    private String quantity;
-    private String foodtype;
+    private String setAmount;
+    private String currencyType;
     private String orderName;
     private String status;
     private String token;
@@ -45,20 +45,20 @@ public class Donation {
     }
 
 
-    public String getQuantity() {
-        return quantity;
+    public String getSetAmount() {
+        return setAmount;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setSetAmount(String setAmount) {
+        this.setAmount = setAmount;
     }
 
-    public String getFoodtype() {
-        return foodtype;
+    public String getCurrencyType() {
+        return currencyType;
     }
 
-    public void setFoodtype(String foodtype) {
-        this.foodtype = foodtype;
+    public void setCurrencyType(String currencyType) {
+        this.currencyType = currencyType;
     }
 
     public String getOrderName() {
