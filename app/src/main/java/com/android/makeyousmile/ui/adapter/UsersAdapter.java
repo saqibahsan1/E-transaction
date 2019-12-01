@@ -12,27 +12,27 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.makeyousmile.R;
-import com.android.makeyousmile.ui.Utility.OrderItemListner;
+import com.android.makeyousmile.ui.Utility.UserItemListener;
 import com.android.makeyousmile.ui.Utility.Utils;
-import com.android.makeyousmile.ui.model.Orders;
+import com.android.makeyousmile.ui.model.UsersModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class UsersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Orders> items = new ArrayList<>();
+    private List<UsersModel> items = new ArrayList<>();
     private Context context;
-    OrderItemListner orderItemListner;
+    UserItemListener userItemListener;
 
-    public OrderAdapter(Context context,OrderItemListner orderItemListner) {
+    public UsersAdapter(Context context, UserItemListener userItemListener) {
         this.context = context;
-        this.orderItemListner = orderItemListner;
+        this.userItemListener = userItemListener;
     }
 
 
 
-    public void setOrders(List<Orders> items) {
+    public void setOrders(List<UsersModel> items) {
         this.items = items;
     }
 
@@ -45,7 +45,7 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         CustomeViewHolder customViewHolder = (CustomeViewHolder) holder;
-        Orders organization=items.get(position);
+        UsersModel organization=items.get(position);
 
         if (!Utils.getInstance().getBoolean("isAdmin", context)){
             customViewHolder.orderName.setVisibility(View.GONE);
@@ -65,13 +65,13 @@ public class OrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         customViewHolder.acceptBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                orderItemListner.onOrderItemClicked(items.get(position),"accepted");
+                userItemListener.onOrderItemClicked(items.get(position),"accepted");
             }
         });
         customViewHolder.rejectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                orderItemListner.onOrderItemClicked(items.get(position),"rejected");
+                userItemListener.onOrderItemClicked(items.get(position),"rejected");
             }
         });
 

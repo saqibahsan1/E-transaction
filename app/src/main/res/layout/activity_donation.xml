@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".ui.activity.DonationActivity">
+        tools:context=".ui.Activities.TransactionActivity">
 
 
 
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="20dp"
-                    android:text="Donate Food"
+                    android:text="Add Transaction"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimaryDark"
@@ -137,12 +137,12 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/food"
+                        android:id="@+id/bitcoinBalanance"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
-                        android:hint="Food Type"
+                        android:hint="Currency Type"
                         android:padding="10dp"
                         android:inputType="text"
                         android:textColor="@android:color/black"
@@ -164,12 +164,12 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/quantity"
+                        android:id="@+id/setAmount"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
-                        android:hint="Quantity"
+                        android:hint="Amount"
                         android:padding="10dp"
                         android:inputType="number"
                         android:textColor="@android:color/black"
@@ -189,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:background="@color/colorPrimaryDark"
-                    android:text="Add Donation"
+                    android:text="Add"
                     android:textColor="@android:color/white"
                     android:textSize="18dp" />
 

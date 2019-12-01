@@ -1,7 +1,7 @@
 package com.android.makeyousmile.ui.Utility;
 
-import com.android.makeyousmile.ui.model.Donation;
+import com.android.makeyousmile.ui.model.TransactionModel;
 
-public interface DonaationItemListner {
-    void onOrderItemClicked(Donation orders, String status);
+public interface TransactionItemListener {
+    void onOrderItemClicked(TransactionModel orders, String status);
 }

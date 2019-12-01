@@ -12,27 +12,27 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.makeyousmile.R;
-import com.android.makeyousmile.ui.Utility.DonaationItemListner;
+import com.android.makeyousmile.ui.Utility.TransactionItemListener;
 import com.android.makeyousmile.ui.Utility.Utils;
-import com.android.makeyousmile.ui.model.Donation;
+import com.android.makeyousmile.ui.model.TransactionModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DonationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Donation> items = new ArrayList<>();
+    private List<TransactionModel> items = new ArrayList<>();
     private Context context;
-    DonaationItemListner listner;
+    TransactionItemListener listner;
 
-    public DonationAdapter(Context context,DonaationItemListner itemListner) {
+    public TransactionAdapter(Context context, TransactionItemListener itemListner) {
         this.context = context;
         this.listner = itemListner;
     }
 
 
 
-    public void setDonation(List<Donation> items) {
+    public void setDonation(List<TransactionModel> items) {
         this.items = items;
     }
 
@@ -45,7 +45,7 @@ public class DonationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         CustomeViewHolder customViewHolder = (CustomeViewHolder) holder;
-        Donation organization=items.get(position);
+        TransactionModel organization=items.get(position);
 
         if (!Utils.getInstance().getBoolean("isAdmin", context)){
             customViewHolder.orderName.setVisibility(View.GONE);

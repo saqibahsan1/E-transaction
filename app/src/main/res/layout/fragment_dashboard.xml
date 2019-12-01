@@ -21,6 +21,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:id="@+id/admin"
+                    android:visibility="invisible"
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
@@ -143,7 +144,7 @@
                             android:layout_gravity="center"
                             android:contentDescription="@null"
                             android:padding="15dp"
-                            app:srcCompat="@drawable/ic_donate" />
+                            app:srcCompat="@drawable/ic_transfer_within_a_station_black_24dp" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -152,7 +153,7 @@
                             android:layout_marginTop="3dp"
                             android:gravity="center"
                             android:lines="2"
-                            android:text="Donation"
+                            android:text="Transactions"
                             android:textSize="15sp" />
                     </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -182,7 +183,7 @@
                             android:layout_gravity="center"
                             android:contentDescription="@null"
                             android:padding="15dp"
-                            app:srcCompat="@drawable/ic_order" />
+                            app:srcCompat="@drawable/ic_sentiment_very_satisfied_black_24dp" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -191,7 +192,7 @@
                             android:layout_marginTop="3dp"
                             android:gravity="center"
                             android:lines="2"
-                            android:text="Orders"
+                            android:text="User"
                             android:textSize="15sp" />
                     </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -209,6 +210,7 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="5dp"
                     android:id="@+id/admin1"
+                    android:visibility="invisible"
                     android:weightSum="2">
 
                     <androidx.cardview.widget.CardView

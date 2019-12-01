@@ -2,12 +2,10 @@ package com.android.makeyousmile.ui.dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -19,11 +17,8 @@ import androidx.lifecycle.ViewModelProviders;
 import com.android.makeyousmile.R;
 import com.android.makeyousmile.databinding.FragmentDashboardBinding;
 import com.android.makeyousmile.ui.Utility.Utils;
-import com.android.makeyousmile.ui.activity.DeliveryBoyActivity;
-import com.android.makeyousmile.ui.activity.DonationActivity;
-import com.android.makeyousmile.ui.activity.OrdersActivity;
-import com.android.makeyousmile.ui.activity.OrganizationActivity;
-import com.android.makeyousmile.ui.activity.RestaurantActivity;
+import com.android.makeyousmile.ui.Activities.TransactionActivity;
+import com.android.makeyousmile.ui.Activities.UsersActivity;
 
 public class DashboardFragment extends Fragment {
 
@@ -44,8 +39,8 @@ public class DashboardFragment extends Fragment {
 
         if (Utils.getInstance().getBoolean("isAdmin", getContext())) {
             binding.user.setVisibility(View.VISIBLE);
-            binding.admin.setVisibility(View.VISIBLE);
-            binding.admin1.setVisibility(View.VISIBLE);
+            binding.admin.setVisibility(View.GONE);
+            binding.admin1.setVisibility(View.GONE);
             binding.scrollView.setBackgroundColor(getResources().getColor(R.color.quantum_white_100));
         }else {
             binding.user.setVisibility(View.VISIBLE);
@@ -57,44 +52,19 @@ public class DashboardFragment extends Fragment {
             binding.admin.setVisibility(View.INVISIBLE);
         }
 
-        binding.organization.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), OrganizationActivity.class));
-            }
-        });
-
         binding.order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), OrdersActivity.class));
-            }
-        });
-
-
-        binding.restaurant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), RestaurantActivity.class));
+                startActivity(new Intent(getContext(), UsersActivity.class));
             }
         });
 
         binding.donation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), DonationActivity.class));
+                startActivity(new Intent(getContext(), TransactionActivity.class));
             }
         });
-
-        binding.deliveryBoy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), DeliveryBoyActivity.class));
-            }
-        });
-
-
-
 
         return binding.getRoot();
     }

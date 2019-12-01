@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user.getEmail() != null) {
-                    if (user != null && (Objects.requireNonNull(user.getEmail()).equalsIgnoreCase("fishialy123@gmail.com") || user.getEmail().equalsIgnoreCase("sanaashaikh231@gmail.com"))) {
+                    if (user != null && (Objects.requireNonNull(user.getEmail().equalsIgnoreCase("muhammadraheel_95@yahoo.com")))) {
                         Utils.getInstance().setBoolean("isAdmin", true, getApplicationContext());
                         Utils.getInstance().setDefaults("userID", user.getUid(), getApplicationContext());
                         Utils.getInstance().setDefaults("userDisplayName",user.getDisplayName(),getApplicationContext());

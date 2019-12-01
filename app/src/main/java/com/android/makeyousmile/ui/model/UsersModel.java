@@ -1,6 +1,6 @@
 package com.android.makeyousmile.ui.model;
 
-public class Orders {
+public class UsersModel {
 
     private String key;
     private String name;

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".ui.activity.OrdersActivity">
+        tools:context=".ui.Activities.UsersActivity">
 
 
         <ScrollView
@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="20dp"
-                    android:text="Add Order"
+                    android:text="Add User"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimaryDark"
@@ -80,9 +80,9 @@
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
-                        android:hint="Contact Number"
+                        android:hint="Email"
                         android:padding="10dp"
-                        android:inputType="number"
+                        android:inputType="textEmailAddress"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
@@ -111,7 +111,7 @@
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
-                        android:hint="Search Restaurant Address..."
+                        android:hint="Address..."
                         android:padding="10dp"
                         android:inputType="textEmailAddress"
                         android:textColor="@android:color/black"
@@ -136,14 +136,14 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/food"
+                        android:id="@+id/bitcoinBalanance"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
-                        android:hint="Food Type"
+                        android:hint="Bitcoin Balance"
                         android:padding="10dp"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
@@ -163,12 +163,12 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/quantity"
+                        android:id="@+id/setAmount"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
-                        android:hint="Quantity"
+                        android:hint="Ethereum Wallet Balance"
                         android:padding="10dp"
                         android:inputType="number"
                         android:textColor="@android:color/black"
@@ -195,7 +195,7 @@
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="center|start"
-                        android:hint="Your Budget"
+                        android:hint="Max Amount per Transaction"
                         android:padding="10dp"
                         android:inputType="number"
                         android:textColor="@android:color/black"
@@ -216,7 +216,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:background="@color/colorPrimaryDark"
-                    android:text="Add Order"
+                    android:text="Add"
                     android:textColor="@android:color/white"
                     android:textSize="18dp" />
 

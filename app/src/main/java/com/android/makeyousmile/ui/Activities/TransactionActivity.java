@@ -16,10 +16,10 @@ import android.widget.Toast;
 
 import com.android.makeyousmile.R;
 import com.android.makeyousmile.databinding.ActivityDonationBinding;
-import com.android.makeyousmile.ui.Utility.DonaationItemListner;
+import com.android.makeyousmile.ui.Utility.TransactionItemListener;
 import com.android.makeyousmile.ui.Utility.Utils;
-import com.android.makeyousmile.ui.adapter.DonationAdapter;
-import com.android.makeyousmile.ui.model.Donation;
+import com.android.makeyousmile.ui.adapter.TransactionAdapter;
+import com.android.makeyousmile.ui.model.TransactionModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,13 +31,13 @@ import com.shivtechs.maplocationpicker.MapUtility;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DonationActivity extends AppCompatActivity implements DonaationItemListner {
+public class TransactionActivity extends AppCompatActivity implements TransactionItemListener {
 
     ActivityDonationBinding binding;
     DatabaseReference myRef,myRefUser;
-    private List<Donation> donationList = new ArrayList<>();
-    private DonationAdapter mAdapter;
-    private Donation donation;
+    private List<TransactionModel> transactionModelList = new ArrayList<>();
+    private TransactionAdapter mAdapter;
+    private TransactionModel transactionModel;
     private int requestCodeAddress = 3;
 
 
@@ -48,7 +48,7 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        myRef = FirebaseDatabase.getInstance().getReference("Donation");
+        myRef = FirebaseDatabase.getInstance().getReference("TransactionModel");
         myRefUser = FirebaseDatabase.getInstance().getReference("UserDonation");
         initRecyclerView(binding.RecyclerView);
 
@@ -62,7 +62,7 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
             binding.btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    donation = new Donation();
+                    transactionModel = new TransactionModel();
                     if (TextUtils.isEmpty(binding.name.getText())) {
                         binding.name.setError("Field is empty");
                         return;
@@ -79,18 +79,18 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
                         binding.setAmount.setError("Field is empty");
                         return;
                     }
-                    donation.setName(binding.name.getText().toString());
-                    donation.setAddress(binding.address.getText().toString());
-                    donation.setContactNumber(binding.contactNumber.getText().toString());
-                    donation.setSetAmount(binding.setAmount.getText().toString());
-                    donation.setCurrencyType(binding.bitcoinBalanance.getText().toString());
-                    donation.setStatus("Pending");
-                    donation.setToken(Utils.getInstance().getDefaults("token",getApplicationContext()));
-                    donation.setOrderName(Utils.getInstance().getDefaults("userDisplayName",getApplicationContext()));
+                    transactionModel.setName(binding.name.getText().toString());
+                    transactionModel.setAddress(binding.address.getText().toString());
+                    transactionModel.setContactNumber(binding.contactNumber.getText().toString());
+                    transactionModel.setSetAmount(binding.setAmount.getText().toString());
+                    transactionModel.setCurrencyType(binding.bitcoinBalanance.getText().toString());
+                    transactionModel.setStatus("Pending");
+                    transactionModel.setToken(Utils.getInstance().getDefaults("token",getApplicationContext()));
+                    transactionModel.setOrderName(Utils.getInstance().getDefaults("userDisplayName",getApplicationContext()));
                     String id = myRef.push().getKey();
                     if (id != null) {
-                        myRef.child(id).setValue(donation);
-                        myRefUser.child(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext())).child(id).setValue(donation);
+                        myRef.child(id).setValue(transactionModel);
+                        myRefUser.child(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext())).child(id).setValue(transactionModel);
                         binding.setAmount.setText("");
                         binding.setAmount.setText(null);
                         binding.contactNumber.setText("");
@@ -101,7 +101,7 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
                         binding.name.setText(null);
                         binding.bitcoinBalanance.setText("");
                         binding.bitcoinBalanance.setText(null);
-                        Toast.makeText(DonationActivity.this, "Donation Added Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TransactionActivity.this, "TransactionModel Added Successfully", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -125,7 +125,7 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
         binding.address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DonationActivity.this, LocationPickerActivity.class);
+                Intent intent = new Intent(TransactionActivity.this, LocationPickerActivity.class);
                 startActivityForResult(intent, requestCodeAddress);
             }
         });
@@ -161,27 +161,27 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
     private void initRecyclerView(RecyclerView recyclerViewLabel) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mAdapter = new DonationAdapter(getApplicationContext(),this);
+        mAdapter = new TransactionAdapter(getApplicationContext(),this);
         recyclerViewLabel.setLayoutManager(mLayoutManager);
         recyclerViewLabel.setAdapter(mAdapter);
     }
 
 
     private void getData() {
-        Utils.getInstance().ShowProgress(DonationActivity.this);
+        Utils.getInstance().ShowProgress(TransactionActivity.this);
         binding.RecyclerView.setVisibility(View.VISIBLE);
         binding.addLayout.setVisibility(View.GONE);
         binding.fab.setVisibility(View.GONE);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                donationList.clear();
+                transactionModelList.clear();
                 for (DataSnapshot organization : dataSnapshot.getChildren()) {
-                    Donation value = organization.getValue(Donation.class);
+                    TransactionModel value = organization.getValue(TransactionModel.class);
                     value.setKey(organization.getKey());
-                    donationList.add(value);
+                    transactionModelList.add(value);
                 }
-                mAdapter.setDonation(donationList);
+                mAdapter.setDonation(transactionModelList);
                 mAdapter.notifyDataSetChanged();
                 Utils.getInstance().HideProgress();
             }
@@ -196,18 +196,18 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
 
 
     private void getDataBYUser() {
-        Utils.getInstance().ShowProgress(DonationActivity.this);
+        Utils.getInstance().ShowProgress(TransactionActivity.this);
         binding.RecyclerView.setVisibility(View.VISIBLE);
         binding.addLayout.setVisibility(View.GONE);
         myRefUser.child(Utils.getInstance().getDefaults("userDisplayName",getApplicationContext())).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                donationList.clear();
+                transactionModelList.clear();
                 for (DataSnapshot organization : dataSnapshot.getChildren()) {
-                    Donation value = organization.getValue(Donation.class);
-                    donationList.add(value);
+                    TransactionModel value = organization.getValue(TransactionModel.class);
+                    transactionModelList.add(value);
                 }
-                mAdapter.setDonation(donationList);
+                mAdapter.setDonation(transactionModelList);
                 mAdapter.notifyDataSetChanged();
                 Utils.getInstance().HideProgress();
             }
@@ -222,8 +222,8 @@ public class DonationActivity extends AppCompatActivity implements DonaationItem
 
 
     @Override
-    public void onOrderItemClicked(Donation orders, String status) {
-        Donation order = new Donation();
+    public void onOrderItemClicked(TransactionModel orders, String status) {
+        TransactionModel order = new TransactionModel();
         order.setName(orders.getName());
         order.setAddress(orders.getAddress());
         order.setContactNumber(orders.getContactNumber());

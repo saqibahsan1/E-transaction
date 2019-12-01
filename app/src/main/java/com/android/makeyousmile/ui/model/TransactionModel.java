@@ -1,6 +1,6 @@
 package com.android.makeyousmile.ui.model;
 
-public class Donation {
+public class TransactionModel {
 
     public String getKey() {
         return key;

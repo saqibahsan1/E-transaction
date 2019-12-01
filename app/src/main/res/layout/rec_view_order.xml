@@ -54,7 +54,7 @@
                     android:text="Name"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    
                     android:textStyle="bold" />
 
                 <TextView
@@ -80,8 +80,9 @@
                     android:padding="5dp"
                     android:text="contact Number"
                     android:textAllCaps="true"
+                    android:maxLines="2"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    
                     android:textStyle="bold" />
 
                 <TextView
@@ -100,7 +101,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:weightSum="2"
                 android:layout_marginLeft="5dp"
                 android:orientation="horizontal">
 
@@ -112,7 +112,7 @@
                     android:text="Address"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    
                     android:textStyle="bold" />
 
                 <TextView
@@ -127,7 +127,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:weightSum="2"
                 android:layout_marginLeft="5dp"
                 android:orientation="horizontal">
 
@@ -135,15 +134,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.8"
+                    android:maxLines="2"
                     android:padding="5dp"
-                    android:text="Food"
+                    android:text="Bitcoin Balance"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/food"
+                    android:id="@+id/bitcoinBalanance"
                     android:layout_width="0dp"
                     android:layout_weight="1.2"
                     android:layout_height="wrap_content"
@@ -151,6 +150,33 @@
 
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:padding="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Ethereum Balance"
+                    android:textAllCaps="true"
+                    android:maxLines="2"
+                    android:textColor="@color/black"
+                    
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/setAmount"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.2"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -163,38 +189,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.8"
                     android:padding="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:text="Quantity"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/quantity"
-                    android:layout_width="0dp"
-                    android:layout_weight="1.2"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="2"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.8"
-                    android:padding="5dp"
-                    android:text="Payment"
+                    android:text="Max Amount"
                     android:layout_marginLeft="5dp"
                     android:textAllCaps="true"
+                    android:maxLines="2"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    
                     android:textStyle="bold" />
 
                 <TextView
@@ -223,7 +223,7 @@
                     android:textAllCaps="true"
                     android:id="@+id/textColor"
                     android:textColor="@android:color/holo_red_dark"
-                    android:textSize="16sp"
+                    
                     android:textStyle="bold" />
 
                 <TextView
@@ -254,7 +254,7 @@
                     android:id="@+id/accept"
                     android:background="@drawable/button_bg"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    
                     android:textStyle="bold" />
 
                 <Button

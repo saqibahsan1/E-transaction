@@ -1,7 +1,7 @@
 package com.android.makeyousmile.ui.Utility;
 
-import com.android.makeyousmile.ui.model.Orders;
+import com.android.makeyousmile.ui.model.UsersModel;
 
-public interface OrderItemListner {
-    void onOrderItemClicked(Orders orders,String status);
+public interface UserItemListener {
+    void onOrderItemClicked(UsersModel usersModel, String status);
 }

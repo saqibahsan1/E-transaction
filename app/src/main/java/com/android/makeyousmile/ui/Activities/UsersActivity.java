@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.makeyousmile.R;
 import com.android.makeyousmile.databinding.ActivityOrdersBinding;
-import com.android.makeyousmile.ui.Utility.OrderItemListner;
+import com.android.makeyousmile.ui.Utility.UserItemListener;
 import com.android.makeyousmile.ui.Utility.Utils;
-import com.android.makeyousmile.ui.adapter.OrderAdapter;
-import com.android.makeyousmile.ui.model.Orders;
+import com.android.makeyousmile.ui.adapter.UsersAdapter;
+import com.android.makeyousmile.ui.model.UsersModel;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.firebase.database.DataSnapshot;
@@ -33,13 +33,13 @@ import com.shivtechs.maplocationpicker.MapUtility;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdersActivity extends AppCompatActivity implements OrderItemListner {
+public class UsersActivity extends AppCompatActivity implements UserItemListener {
 
     ActivityOrdersBinding binding;
     DatabaseReference myRef, myRefUser;
-    private List<Orders> donationList = new ArrayList<>();
-    private OrderAdapter mAdapter;
-    private Orders orders;
+    private List<UsersModel> donationList = new ArrayList<>();
+    private UsersAdapter mAdapter;
+    private UsersModel usersModel;
     private String id;
     private int requestCodeAddress = 2;
     PlacesClient placesClient;
@@ -50,7 +50,7 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
         binding = DataBindingUtil.setContentView(this, R.layout.activity_orders);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        myRef = FirebaseDatabase.getInstance().getReference("Orders");
+        myRef = FirebaseDatabase.getInstance().getReference("UsersModel");
         myRefUser = FirebaseDatabase.getInstance().getReference("UserOrders");
         initRecyclerView(binding.RecyclerView);
 
@@ -62,7 +62,7 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
             binding.btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    orders = new Orders();
+                    usersModel = new UsersModel();
                     if (TextUtils.isEmpty(binding.name.getText())) {
                         binding.name.setError("Field is empty");
                         return;
@@ -82,20 +82,20 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
                         binding.payment.setError("Field is empty");
                         return;
                     }
-                    Utils.getInstance().ShowProgress(OrdersActivity.this);
-                    orders.setName(binding.name.getText().toString());
-                    orders.setAddress(binding.addressText.getText().toString());
-                    orders.setContactNumber(binding.contactNumber.getText().toString());
-                    orders.setEthereumBalance(binding.setAmount.getText().toString());
-                    orders.setBitcoinBalance(binding.bitcoinBalanance.getText().toString());
-                    orders.setPayment(binding.payment.getText().toString());
-                    orders.setStatus("Pending");
-                    orders.setToken(Utils.getInstance().getDefaults("token", getApplicationContext()));
-                    orders.setOrderName(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext()));
+                    Utils.getInstance().ShowProgress(UsersActivity.this);
+                    usersModel.setName(binding.name.getText().toString());
+                    usersModel.setAddress(binding.addressText.getText().toString());
+                    usersModel.setContactNumber(binding.contactNumber.getText().toString());
+                    usersModel.setEthereumBalance(binding.setAmount.getText().toString());
+                    usersModel.setBitcoinBalance(binding.bitcoinBalanance.getText().toString());
+                    usersModel.setPayment(binding.payment.getText().toString());
+                    usersModel.setStatus("Pending");
+                    usersModel.setToken(Utils.getInstance().getDefaults("token", getApplicationContext()));
+                    usersModel.setOrderName(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext()));
                     id = myRef.push().getKey();
                     if (id != null) {
-                        myRef.child(id).setValue(orders);
-                        myRefUser.child(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext())).child(id).setValue(orders);
+                        myRef.child(id).setValue(usersModel);
+                        myRefUser.child(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext())).child(id).setValue(usersModel);
                         binding.setAmount.setText("");
                         binding.setAmount.setText(null);
                         binding.contactNumber.setText("");
@@ -108,7 +108,7 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
                         binding.bitcoinBalanance.setText(null);
                         binding.payment.setText("");
                         binding.payment.setText(null);
-                        Toast.makeText(OrdersActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UsersActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
                         Utils.getInstance().HideProgress();
                     }
                 }
@@ -150,7 +150,7 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(OrdersActivity.this, LocationPickerActivity.class);
+                Intent intent = new Intent(UsersActivity.this, LocationPickerActivity.class);
                 startActivityForResult(intent, requestCodeAddress);
 //                List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS
 //                        , Place.Field.LAT_LNG);
@@ -160,7 +160,7 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
 //                                new LatLng(24.926294, 67.022095),
 //                                new LatLng(30.3753, 69.3451)))
 //                        .setCountry("pakistan")
-//                        .build(OrdersActivity.this);
+//                        .build(UsersActivity.this);
 //
 //                startActivityForResult(autocompleteIntent, requestCodeAddress);
             }
@@ -199,10 +199,10 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
 //        lastQuery.addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(DataSnapshot dataSnapshot) {
-//                Orders value;
+//                UsersModel value;
 //                donationList.clear();
 //                for (DataSnapshot organization : dataSnapshot.getChildren()) {
-//                    value = organization.getValue(Orders.class);
+//                    value = organization.getValue(UsersModel.class);
 //                    donationList.add(value);
 //                    mAdapter.setOrders(donationList);
 //                    mAdapter.notifyDataSetChanged();
@@ -238,14 +238,14 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mAdapter = new OrderAdapter(getApplicationContext(), this);
+        mAdapter = new UsersAdapter(getApplicationContext(), this);
         recyclerViewLabel.setLayoutManager(mLayoutManager);
         recyclerViewLabel.setAdapter(mAdapter);
     }
 
 
     private void getData() {
-        Utils.getInstance().ShowProgress(OrdersActivity.this);
+        Utils.getInstance().ShowProgress(UsersActivity.this);
         binding.RecyclerView.setVisibility(View.VISIBLE);
         binding.addLayout.setVisibility(View.GONE);
         binding.fab.setVisibility(View.GONE);
@@ -254,7 +254,7 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
             public void onDataChange(DataSnapshot dataSnapshot) {
                 donationList.clear();
                 for (DataSnapshot organization : dataSnapshot.getChildren()) {
-                    Orders value = organization.getValue(Orders.class);
+                    UsersModel value = organization.getValue(UsersModel.class);
                     value.setKey(organization.getKey());
                     donationList.add(value);
                 }
@@ -274,7 +274,7 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
 
 
     private void getDataByUSer() {
-        Utils.getInstance().ShowProgress(OrdersActivity.this);
+        Utils.getInstance().ShowProgress(UsersActivity.this);
         binding.RecyclerView.setVisibility(View.VISIBLE);
         binding.addLayout.setVisibility(View.GONE);
         myRefUser.child(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext())).addValueEventListener(new ValueEventListener() {
@@ -282,7 +282,7 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
             public void onDataChange(DataSnapshot dataSnapshot) {
                 donationList.clear();
                 for (DataSnapshot organization : dataSnapshot.getChildren()) {
-                    Orders value = organization.getValue(Orders.class);
+                    UsersModel value = organization.getValue(UsersModel.class);
                     donationList.add(value);
                 }
                 mAdapter.setOrders(donationList);
@@ -301,19 +301,19 @@ public class OrdersActivity extends AppCompatActivity implements OrderItemListne
 
 
     @Override
-    public void onOrderItemClicked(final Orders orders, final String status) {
-        Orders order = new Orders();
-        order.setName(orders.getName());
-        order.setAddress(orders.getAddress());
-        order.setContactNumber(orders.getContactNumber());
-        order.setEthereumBalance(orders.getEthereumBalance());
-        order.setBitcoinBalance(orders.getBitcoinBalance());
-        order.setPayment(orders.getPayment());
+    public void onOrderItemClicked(final UsersModel usersModel, final String status) {
+        UsersModel order = new UsersModel();
+        order.setName(usersModel.getName());
+        order.setAddress(usersModel.getAddress());
+        order.setContactNumber(usersModel.getContactNumber());
+        order.setEthereumBalance(usersModel.getEthereumBalance());
+        order.setBitcoinBalance(usersModel.getBitcoinBalance());
+        order.setPayment(usersModel.getPayment());
         order.setStatus(status);
         order.setToken(Utils.getInstance().getDefaults("token", getApplicationContext()));
         order.setOrderName(Utils.getInstance().getDefaults("userDisplayName", getApplicationContext()));
-        myRef.child(orders.getKey()).setValue(order);
-            myRefUser.child(orders.getOrderName()).child(orders.getKey()).setValue(order);
+        myRef.child(usersModel.getKey()).setValue(order);
+            myRefUser.child(usersModel.getOrderName()).child(usersModel.getKey()).setValue(order);
         mAdapter.notifyDataSetChanged();
     }
 
