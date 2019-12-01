@@ -1,24 +1,21 @@
 package com.android.makeyousmile.ui.profile;
 
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.android.makeyousmile.R;
 import com.android.makeyousmile.databinding.ProfileFragmentBinding;
 import com.android.makeyousmile.ui.Activities.Login;
-import com.android.makeyousmile.ui.Activities.MainActivity;
 import com.android.makeyousmile.ui.Utility.Utils;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
