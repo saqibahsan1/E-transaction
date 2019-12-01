@@ -48,7 +48,7 @@ public class TransactionActivity extends AppCompatActivity implements Transactio
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        myRef = FirebaseDatabase.getInstance().getReference("TransactionModel");
+        myRef = FirebaseDatabase.getInstance().getReference("Donation");
         myRefUser = FirebaseDatabase.getInstance().getReference("UserDonation");
         initRecyclerView(binding.RecyclerView);
 
